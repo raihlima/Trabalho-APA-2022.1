@@ -5,10 +5,16 @@ Spyder Editor
 This is a temporary script file.
 """
 import random
+import pandas as pd
 
 quantidadeVertices = 100
 quantidadeMaxLigacao = 3
 
+"""
+1 – Gerar randomicamente um grafo não orientado com 100 vértices , com um número baixo
+de ligações ( de uma a dez vezes o número de vértices ).
+2 – Implementar um algoritmo que gere a representação matricial ( matriz adjacência binária )
+"""
 def grafo():
     global matriz
     matriz = []
@@ -28,7 +34,6 @@ def grafo():
                 matriz[x][k] = 1
                 matriz[k][x] = 1
             
-
 def verificaNumeroLigacoes():
     
     for x in range (quantidadeVertices):
@@ -49,6 +54,8 @@ def verificaNumeroLigacoesAux(y):
     else:
         return bool(False)
 
+
+
 def removeLigacao(x, numeroLigacao):
     for y in range (quantidadeVertices):
         if matriz[x][y] == 1:
@@ -59,7 +66,18 @@ def removeLigacao(x, numeroLigacao):
                 if numeroLigacao <=10:
                     break
     if numeroLigacao > 10:
-        grafo()        
+        grafo()
+        
+"""
+3 – Implementar um algoritmo que, a partir da matriz, gere a representação vetorial ( vetor
+binário )de sua parte triangular superior.
+"""
+def gerarRepresentacaoVetorial():
+    vetor = []
+    for x in range(1,quantidadeVertices):
+        for y in range(x, quantidadeVertices):
+            vetor.append(matriz[x][y])
+    return vetor
 
 def main():
     grafo()
